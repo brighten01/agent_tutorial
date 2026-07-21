@@ -12,6 +12,21 @@ import (
 	"github.com/cloudwego/eino/schema"
 )
 
+/*
+链式流程
+入参 ArticleRequest(主题+关键词)
+        ↓
+节点1 调用DeepSeek → 输出大纲(string)
+        ↓
+节点2 传入大纲 → 调用DeepSeek → 输出初稿(string)
+        ↓
+节点3 传入初稿 → 调用DeepSeek → 输出润色文章(string)
+        ↓
+节点4 本地格式化字符串 → 输出最终markdown文本
+        ↓
+打印最终完整文章
+
+*/
 // 优化文章 工作流 1。总结文章大纲 2.扩写文章 3.文章润色 4。格式化输出
 type ArticleRequest struct {
 	Topic    string

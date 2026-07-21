@@ -37,6 +37,10 @@ func NewWeatherTool() *WeatherTool {
 	}
 }
 
+type WeatherParams struct {
+	City string `json:"city"`
+}
+
 func (w *WeatherTool) Info(ctx context.Context) (*schema.ToolInfo, error) {
 	return &schema.ToolInfo{
 		Name: "get_weather",
@@ -50,10 +54,6 @@ func (w *WeatherTool) Info(ctx context.Context) (*schema.ToolInfo, error) {
 			},
 		}),
 	}, nil
-}
-
-type WeatherParams struct {
-	City string `json:"city"`
 }
 
 func (w *WeatherTool) InvokableRun(ctx context.Context, argumentJson string) (string, error) {
